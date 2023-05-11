@@ -3,14 +3,83 @@
   "metadata": {},
   "schema": {
     "name": "bb-component-SuperFieldGroup",
-    "friendlyName": "bb-component-SuperFieldGroup",
+    "friendlyName": "Super Field Group",
     "description": "A Field Group Component for Budibase",
+    "hasChildren": true,
     "icon": "Text",
     "settings": [
       {
         "type": "text",
-        "key": "text",
-        "label": "Text"
+        "key": "header",
+        "label": "Header"
+      },
+      {
+        "type" : "select",
+        "key" : "labelPos",
+        "label" : "Label Position",
+        "options" : [
+          { "label" : "Left", "value" : "left" },
+          { "label" : "Above", "value" : "above" }
+        ],
+        "defaultValue" : "left"
+
+      },
+      {
+        "type" : "text",
+        "key" : "labelWidth",
+        "label" : "Label Col Width",
+        "defaultValue" : "fit-contents"
+      },
+      {
+        "type" : "select",
+        "key" : "spacing",
+        "label" : "Spacing",
+        "options" : [
+          { "label" : "Tighter", "value" : "8px" },
+          { "label" : "Tight", "value" : "16px" },
+          { "label" : "Normal", "value" : "24px" },
+          { "label" : "Spacious", "value" : "32px" }
+        ],
+        "defaultValue" : "24px"
+
+      },
+      {
+        "type" : "number",
+        "key" : "columns",
+        "label" : "Columns",
+        "min" : 1,
+        "max" : 6,
+        "defaultValue": 1
+      },
+      {
+        "type" : "boolean",
+        "key" : "collapsible",
+        "label" : "Collapsible",
+        "defaultValue": false
+      },
+      {
+        "type" : "boolean",
+        "key" : "showHeader",
+        "label" : "Show Header",
+        "defaultValue": true
+      },
+      {
+        "type" : "boolean",
+        "key" : "customLabels",
+        "label" : "Customize Labels",
+        "defaultValue": false
+      },
+      {
+        "section" : true,
+        "name" : "Customize Labels",
+        "dependsOn" : "customLabels",
+        "settings" : [
+          {
+            "type" : "boolean",
+            "key" : "bold",
+            "label" : "Bold"
+          }
+        ]
       }
     ]
   }

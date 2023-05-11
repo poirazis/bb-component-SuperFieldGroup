@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Field Group Component for Budibase",
   "license": "MIT",
+  "author": "Michael Poirazi",
   "svelte": "index.js",
   "module": "dist/plugin.min.js",
   "scripts": {
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
+    "@spectrum-css/fieldgroup": "^4.0.40",
     "svelte": "^3.49.0"
   },
   "devDependencies": {

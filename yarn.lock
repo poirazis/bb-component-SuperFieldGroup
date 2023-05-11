@@ -286,6 +286,11 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
+"@spectrum-css/fieldgroup@^4.0.40":
+  version "4.0.40"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/fieldgroup/-/fieldgroup-4.0.40.tgz#02189c8efc589441abe5576866a538a252b28b25"
+  integrity sha512-ft3XcFiSwek6M3Vf0fm+OrgYZ9CjcDBJRCzVPrfy239mE0Y6Cmiq1p7HOQp0wrbFsccrua8YAZ1dvsIHqSi3Ag==
+
 "@techpass/passport-openidconnect@0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@techpass/passport-openidconnect/-/passport-openidconnect-0.3.2.tgz#f8fd5d97256286665dbf26dac92431f977ab1e63"
