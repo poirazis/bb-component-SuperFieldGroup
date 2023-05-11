@@ -16,10 +16,13 @@
 
 <div class="wrapper" use:styleable={$component.styles}>
   {#if header}
-    {header}
+    <h4
+      style:margin-bottom={spacing} 
+      class="spectrum-Heading spectrum-Heading--sizeXS">{header}</h4>
   {/if}
   <div
     style:--spectrum-global-dimension-size-300={spacing}
+    style:--spectrum-global-dimension-size-250={spacing}
     style:--label-column-width={labelWidth || "fit-contents"}
     class="spectrum-Form"
     class:spectrum-Form--labelsAbove={labelPos === "above"}
