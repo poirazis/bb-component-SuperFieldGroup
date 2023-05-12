@@ -1,13 +1,20 @@
 <script>
   import { getContext, setContext } from "svelte"
+  import Placeholder from "./Placeholder.svelte";
 
-  const { styleable } = getContext("sdk")
+  const { styleable, builderStore } = getContext("sdk")
   const component = getContext("component")
 
+  export let showHeader
   export let header
+  export let headerSize
+  export let headerBold
   export let labelPos
   export let labelWidth
-  export let spacing
+  export let labelSize
+  export let labelBold
+  export let rowSpacing
+  export let columnSpacing
   export let collapsible
   export let columns
 
@@ -15,19 +22,31 @@
 </script>
 
 <div class="wrapper" use:styleable={$component.styles}>
-  {#if header}
+  {#if showHeader && header != "" }
     <h4
-      style:margin-bottom={spacing} 
-      class="spectrum-Heading spectrum-Heading--sizeXS">{header}</h4>
+      style:margin-bottom={rowSpacing} 
+      class="spectrum-Heading spectrum-Heading--size{headerSize}"
+      class:spectrum-Heading--light={!headerBold}
+      >{header}</h4>
   {/if}
   <div
-    style:--spectrum-global-dimension-size-300={spacing}
-    style:--spectrum-global-dimension-size-250={spacing}
+    style:--grid-row-gap={rowSpacing}
+    style:--grid-column-gap={columnSpacing}
+    style:--grid-columns={columns}
     style:--label-column-width={labelWidth || "fit-contents"}
+    style:--spectrum-tableform-margin={"unset"}
+    style:--spectrum-tableform-border-spacing={"unset"}
     class="spectrum-Form"
     class:spectrum-Form--labelsAbove={labelPos === "above"}
   >
     <slot />
+    {#if columns - $component.children > 0}
+    {#each new Array(columns - $component.children) as _}
+      <div class:placeholder={$builderStore.inBuilder}>
+        <Placeholder />
+      </div>
+    {/each}
+  {/if}
   </div>
 </div>
 
@@ -42,8 +61,12 @@
   }
   .spectrum-Form {
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), 1fr [col-start]);
+    column-gap: var(--grid-column-gap);
+    row-gap: var(--grid-row-gap);
   }
   .spectrum-Form--labelsAbove {
-    gap: 2px !important;
+    display: grid !important;
   }
 </style>
