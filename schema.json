@@ -2,7 +2,7 @@
   "type": "component",
   "metadata": {},
   "schema": {
-    "name": "bb-component-SuperFieldGroup",
+    "name": "bb-component-SuperFieldGroup/fieldgroup",
     "friendlyName": "Super Field Group",
     "description": "A Field Group Component for Budibase",
     "hasChildren": true,
