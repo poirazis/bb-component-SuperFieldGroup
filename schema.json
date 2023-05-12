@@ -85,6 +85,13 @@
       },
       {
         "type" : "boolean",
+        "key" : "padding",
+        "label" : "Padding",
+        "defaultValue": true,
+        "dependsOn" : { "setting": "collapsible", "value" : true }
+      },
+      {
+        "type" : "boolean",
         "key" : "customLabels",
         "label" : "Customize Labels",
         "defaultValue": false
