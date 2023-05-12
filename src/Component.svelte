@@ -9,15 +9,15 @@
   export let headerSize
   export let headerFontBold
   export let headerFontColor = "var(--spectrum-global-color-gray-700)"
-  export let headerIcon
   export let labelPos
   export let labelWidth
   export let labelSize
   export let labelWeight
   export let rowSpacing
   export let columnSpacing
-  export let collapsible = true
-  export let collapsed = false
+  export let collapsible
+  export let collapsed
+  export let padding
   export let columns
   export let disabled
 
@@ -32,14 +32,24 @@
       <h3 
         style:--header-font-size={headerSize} 
         style:--header-font-color={headerFontColor} 
-        style:--header-font-bold={headerFontBold ? "700" : "500"} 
+        style:--header-font-bold={headerFontBold ? "700" : "500"}
         class="spectrum-Accordion-itemHeading">
-        <button on:click={() => { if (!disabled) collapsed = !collapsed }} class="spectrum-Accordion-itemHeader" type="button">{header}</button>
-        <svg class="spectrum-Icon spectrum-UIIcon-ChevronRight100 spectrum-Accordion-itemIndicator" focusable="false" aria-hidden="true">
+        <button 
+          style:padding-left={padding ? "2.5rem" : "1.5rem"}
+          on:click={() => { if (!disabled) collapsed = !collapsed }} 
+          class="spectrum-Accordion-itemHeader" type="button">{header}
+        </button>
+        <svg
+        style:left={padding ? "1rem" : "0px"}
+        class="spectrum-Icon spectrum-UIIcon-ChevronRight100 spectrum-Accordion-itemIndicator" focusable="false" aria-hidden="true">
           <use xlink:href="#spectrum-css-icon-Chevron100" />
         </svg>
       </h3>
-        <div class="spectrum-Accordion-itemContent" role="region">
+        <div 
+          class="spectrum-Accordion-itemContent"
+          style:padding-right={padding ? "1rem" : "0rem"} 
+          style:padding-left={padding ? "1rem" : "0rem"} 
+          role="region">
           <div
             class="spectrum-Form"
             class:spectrum-Form--labelsAbove={labelPos === "above"}
