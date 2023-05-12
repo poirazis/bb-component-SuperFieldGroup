@@ -152,7 +152,7 @@
           },
           {
             "type" : "boolean",
-            "key" : "headerBold",
+            "key" : "headerFontBold",
             "label" : "Bold",
             "defaultValue" : false
           }
