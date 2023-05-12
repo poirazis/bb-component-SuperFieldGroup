@@ -2,7 +2,7 @@
   "type": "component",
   "metadata": {},
   "schema": {
-    "name": "bb-component-SuperFieldGroup/fieldgroup",
+    "name": "bb-component-SuperFieldGroup",
     "friendlyName": "Super Field Group",
     "description": "A Field Group Component for Budibase",
     "hasChildren": true,
@@ -65,9 +65,23 @@
       },
       {
         "type" : "boolean",
-        "key" : "showHeader",
-        "label" : "Show Header",
-        "defaultValue": true
+        "key" : "collapsed",
+        "label" : "Collapsed",
+        "dependsOn" : "collapsible",
+        "defaultValue": false
+      },
+      {
+        "type" : "boolean",
+        "key" : "disabled",
+        "label" : "Disabled",
+        "defaultValue": false
+      },
+      {
+        "type" : "boolean",
+        "key" : "hideHeader",
+        "label" : "Hide Header",
+        "defaultValue": false,
+        "dependsOn" : { "setting": "collapsible", "value" : false }
       },
       {
         "type" : "boolean",
@@ -81,16 +95,36 @@
         "dependsOn" : "customLabels",
         "settings" : [
           {
-            "type" : "boolean",
-            "key" : "bold",
-            "label" : "Bold"
+            "type" : "select",
+            "key" : "labelSize",
+            "label" : "Size",
+            "options" : [
+              { "label" : "Small", "value" : "12px" },
+              { "label" : "Medium", "value" : "14px" },
+              { "label" : "Large", "value" : "15px" },
+              { "label" : "X Large", "value" : "16px" },
+              { "label" : "XX Large", "value" : "17px" }
+            ],
+            "defaultValue" : "12px"
+          },
+          {
+            "type" : "select",
+            "key" : "labelWeight",
+            "label" : "Weight",
+            "options" : [
+              { "label" : "Light", "value" : "400" },
+              { "label" : "Normal", "value" : "500" },
+              { "label" : "Bold", "value" : "600" },
+              { "label" : "Bolder", "value" : "700" }
+            ],
+            "defaultValue" : "500"
           }
         ]
       },
       {
         "section" : true,
         "name" : "Header Settings",
-        "dependsOn" : "showHeader",
+        "dependsOn" : { "setting" : "hideHeader", "value" : false },
         "settings" : [
           {
             "type": "text",
@@ -103,12 +137,18 @@
             "key" : "headerSize",
             "label" : "Size",
             "options" : [
-              { "label" : "Small", "value" : "XXS" },
-              { "label" : "Medium", "value" : "XS" },
-              { "label" : "Large", "value" : "S" },
-              { "label" : "Extra Large", "value" : "M" }
+              { "label" : "Small", "value" : "12px" },
+              { "label" : "Medium", "value" : "14px" },
+              { "label" : "Large", "value" : "16px" },
+              { "label" : "Extra Large", "value" : "17px" }
             ],
-            "defaultValue" : "XS"
+            "defaultValue" : "14px"
+          },
+          {
+            "type" : "color",
+            "key" : "headerFontColor",
+            "label" : "Color",
+            "defaultValue" : "var(--spectrum-global-color-gray-700)"
           },
           {
             "type" : "boolean",
