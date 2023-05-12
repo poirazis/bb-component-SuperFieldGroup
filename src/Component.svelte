@@ -1,6 +1,5 @@
 <script>
   import { getContext, setContext } from "svelte"
-  import Placeholder from "./Placeholder.svelte";
 
   const { styleable } = getContext("sdk")
   const component = getContext("component")
@@ -8,7 +7,7 @@
   export let hideHeader
   export let header
   export let headerSize
-  export let headerBold
+  export let headerFontBold
   export let headerFontColor = "var(--spectrum-global-color-gray-700)"
   export let headerIcon
   export let labelPos
@@ -33,7 +32,7 @@
       <h3 
         style:--header-font-size={headerSize} 
         style:--header-font-color={headerFontColor} 
-        style:--header-font-bold={headerBold} 
+        style:--header-font-bold={headerFontBold ? "700" : "500"} 
         class="spectrum-Accordion-itemHeading">
         <button on:click={() => { if (!disabled) collapsed = !collapsed }} class="spectrum-Accordion-itemHeader" type="button">{header}</button>
         <svg class="spectrum-Icon spectrum-UIIcon-ChevronRight100 spectrum-Accordion-itemIndicator" focusable="false" aria-hidden="true">
@@ -63,10 +62,10 @@
     {#if !hideHeader}
       <h6
         class="spectrum-Heading"
-        style:margin-bottom={rowSpacing}
         style:--header-font-size={headerSize}
         style:--header-font-color={headerFontColor} 
-        style:--header-font-bold={headerBold ? "700" : "500"} 
+        style:--header-font-bold={headerFontBold ? "700" : "500"} 
+        style:margin-bottom={rowSpacing}
         >
         {header.toUpperCase()}
       </h6>
@@ -115,9 +114,10 @@
     display: grid !important;
   }
   .spectrum-Heading {
+    font-size: var(--header-font-size) !important;
     color: var(--header-font-color) !important;
     font-weight: var(--header-font-bold) !important;
-    font-size: var(--header-font-size) !important;
+    margin-top: 0px !important;
   }
 
   .spectrum-Accordion-itemHeading .spectrum-Accordion-itemHeader {
