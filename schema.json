@@ -14,40 +14,40 @@
         "label" : "Label Position",
         "options" : [
           { "label" : "Left", "value" : "left" },
-          { "label" : "Above", "value" : "above" }
+          { "label" : "Above", "value" : "above" },
+          { "label" : "Right", "value" : "right" }
         ],
         "defaultValue" : "left"
-
       },
       {
         "type" : "text",
         "key" : "labelWidth",
         "label" : "Label Col Width",
-        "defaultValue" : "fit-contents"
+        "defaultValue" : "25%"
       },
       {
         "type" : "select",
         "key" : "rowSpacing",
         "label" : "Row Spacing",
         "options" : [
-          { "label" : "Tighter", "value" : "8px" },
-          { "label" : "Tight", "value" : "16px" },
-          { "label" : "Normal", "value" : "24px" },
-          { "label" : "Spacious", "value" : "32px" }
+          { "label" : "Extra Small", "value" : "XS" },
+          { "label" : "Small", "value" : "S" },
+          { "label" : "Medium", "value" : "M" },
+          { "label" : "Large", "value" : "L" }
         ],
-        "defaultValue" : "24px"
+        "defaultValue" : "M"
       },
       {
         "type" : "select",
         "key" : "columnSpacing",
         "label" : "Column Spacing",
         "options" : [
-          { "label" : "Tighter", "value" : "8px" },
-          { "label" : "Tight", "value" : "16px" },
-          { "label" : "Normal", "value" : "24px" },
-          { "label" : "Spacious", "value" : "32px" }
+          { "label" : "Extra Small", "value" : "XS" },
+          { "label" : "Small", "value" : "S" },
+          { "label" : "Medium", "value" : "M" },
+          { "label" : "Large", "value" : "L" }
         ],
-        "defaultValue" : "24px"
+        "defaultValue" : "M"
       },
       {
         "type" : "number",
@@ -56,6 +56,13 @@
         "min" : 1,
         "max" : 10,
         "defaultValue": 1
+      },
+      {
+        "type" : "text",
+        "key" : "column1",
+        "label" : "Column 1 Width",
+        "defaultValue": "50%",
+        "dependsOn" : { "setting" : "columns" , "value" : 2 }
       },
       {
         "type" : "boolean",

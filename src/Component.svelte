@@ -21,18 +21,43 @@
   export let columns
   export let disabled
 
+  export let column1
+
+  let rowSpacingMap = {
+    "above" : { XS : 1, S: 4, M : 8, L : 16 },
+    "left" : { XS : 8, S: 16, M : 24, L : 32 },
+    "right" : { XS : 8, S: 16, M : 24, L : 32 }
+  }
+
+  let colSpacingMap = {
+    "above" : { XS : 4, S: 8, M : 16, L : 24 },
+    "left" : { XS : 4, S: 8, M : 16, L : 24 },
+  }
+
+  $: gridColumnsDef = genmerateColumns( columns, column1 )
+
+  function genmerateColumns ( ) {
+    let columnsTemplate
+
+    if (columns == 2 ) 
+      columnsTemplate = column1 + " auto" 
+    else 
+      columnsTemplate = "repeat(" + columns + ", 1fr )";
+
+    return columnsTemplate
+  }
+
   setContext("field-group", { labelPos })
 </script>
 
 <div class="wrapper" use:styleable={$component.styles}>
-
   {#if collapsible}
   <div class="spectrum-Accordion">
     <div class:is-disabled={disabled} class:is-open={!collapsed} class="spectrum-Accordion-item">
       <h3 
         style:--header-font-size={headerSize} 
         style:--header-font-color={headerFontColor} 
-        style:--header-font-bold={headerFontBold ? "700" : "500"}
+        style:--header-font-bold={headerFontBold ? "800" : "600"}
         class="spectrum-Accordion-itemHeading">
         <button 
           style:padding-left={padding ? "2.5rem" : "1.5rem"}
@@ -53,10 +78,10 @@
           <div
             class="spectrum-Form"
             class:spectrum-Form--labelsAbove={labelPos === "above"}
-            style:--grid-row-gap={rowSpacing}
-            style:--grid-column-gap={columnSpacing}
-            style:--grid-columns={columns}
-            style:--label-column-width={labelWidth || "fit-contents"}
+            style:--grid-row-gap={rowSpacingMap[labelPos][rowSpacing] + "px"}
+            style:--grid-column-gap={colSpacingMap[labelPos][columnSpacing] + "px"}
+            style:--grid-columns={gridColumnsDef}
+            style:--label-column-width={labelWidth || "100px"}
             style:--spectrum-tableform-margin={"unset"}
             style:--spectrum-tableform-border-spacing={"unset"}
             style:--label-font-size={labelSize}
@@ -74,24 +99,24 @@
         class="spectrum-Heading"
         style:--header-font-size={headerSize}
         style:--header-font-color={headerFontColor} 
-        style:--header-font-bold={headerFontBold ? "700" : "500"} 
-        style:margin-bottom={rowSpacing}
+        style:--header-font-bold={headerFontBold ? "800" : "600"} 
+        style:margin-bottom={"0.85rem"}
         >
         {header.toUpperCase()}
       </h6>
     {/if}
     <div
       class="spectrum-Form"
+      class:view-mode={viewMode}
       class:spectrum-Form--labelsAbove={labelPos === "above"}
-      style:--grid-row-gap={rowSpacing}
-      style:--grid-column-gap={columnSpacing}
-      style:--grid-columns={columns}
+      style:--grid-row-gap={rowSpacingMap[labelPos][rowSpacing] + "px"}
+      style:--grid-column-gap={colSpacingMap[labelPos][columnSpacing] + "px"}
+      style:--grid-columns={gridColumnsDef}
       style:--label-column-width={labelWidth || "fit-contents"}
       style:--spectrum-tableform-margin={"unset"}
       style:--spectrum-tableform-border-spacing={"unset"}
       style:--label-font-size={labelSize}
       style:--label-font-weight={labelWeight}
-
     >   
       <slot />
     </div>
@@ -116,12 +141,13 @@
   .spectrum-Form {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr [col-start]);
+    grid-template-columns: var(--grid-columns);
     column-gap: var(--grid-column-gap);
     row-gap: var(--grid-row-gap);
   }
   .spectrum-Form--labelsAbove {
     display: grid !important;
+    margin-top: 0.85rem;
   }
   .spectrum-Heading {
     font-size: var(--header-font-size) !important;
