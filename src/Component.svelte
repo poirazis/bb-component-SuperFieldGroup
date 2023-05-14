@@ -21,7 +21,7 @@
   export let columns
   export let disabled
 
-  export let column1
+  export let column1 = "50%"
 
   let rowSpacingMap = {
     "above" : { XS : 1, S: 4, M : 8, L : 16 },
@@ -39,7 +39,7 @@
   function genmerateColumns ( ) {
     let columnsTemplate
 
-    if (columns == 2 ) 
+    if (columns == 2 && column1 != "") 
       columnsTemplate = column1 + " auto" 
     else 
       columnsTemplate = "repeat(" + columns + ", 1fr )";
@@ -145,8 +145,7 @@
     row-gap: var(--grid-row-gap);
   }
   .spectrum-Form--labelsAbove {
-    display: grid !important;
-    margin-top: 0.85rem;
+    display: grid !important; 
   }
   .spectrum-Heading {
     font-size: var(--header-font-size) !important;
