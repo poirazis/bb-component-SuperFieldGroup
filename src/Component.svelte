@@ -107,7 +107,6 @@
     {/if}
     <div
       class="spectrum-Form"
-      class:view-mode={viewMode}
       class:spectrum-Form--labelsAbove={labelPos === "above"}
       style:--grid-row-gap={rowSpacingMap[labelPos][rowSpacing] + "px"}
       style:--grid-column-gap={colSpacingMap[labelPos][columnSpacing] + "px"}
