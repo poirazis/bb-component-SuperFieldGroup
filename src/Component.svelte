@@ -1,7 +1,7 @@
 <script>
   import { getContext, setContext } from "svelte"
 
-  const { styleable } = getContext("sdk")
+  const { styleable, Block, BlockComponent } = getContext("sdk")
   const component = getContext("component")
 
   export let hideHeader
@@ -9,46 +9,51 @@
   export let headerSize
   export let headerFontBold
   export let headerFontColor = "var(--spectrum-global-color-gray-700)"
-  export let labelPos
-  export let labelWidth
-  export let labelSize
+  export let labelPos = "above"
+  export let labelWidth = "5rem"
+  export let labelSize = "14px"
   export let labelWeight
-  export let rowSpacing
-  export let columnSpacing
+  export let rowSpacing = "M"
+  export let columnSpacing = "M"
   export let collapsible
-  export let collapsed
-  export let padding
-  export let columns
+  export let collapsed = false
+  export let padding = true
+  export let columns = 1
   export let disabled
+  export let colSpan = 6
 
   export let column1 = "50%"
 
-  let rowSpacingMap = {
+  const rowSpacingMap = {
     "above" : { XS : 1, S: 4, M : 8, L : 16 },
     "left" : { XS : 8, S: 16, M : 24, L : 32 },
     "right" : { XS : 8, S: 16, M : 24, L : 32 }
   }
 
-  let colSpacingMap = {
+  const colSpacingMap = {
     "above" : { XS : 4, S: 8, M : 16, L : 24 },
     "left" : { XS : 4, S: 8, M : 16, L : 24 },
+    "right" : { XS : 8, S: 16, M : 24, L : 32 }
   }
 
   $: gridColumnsDef = genmerateColumns( columns, column1 )
-
-  function genmerateColumns ( ) {
-    let columnsTemplate
-
-    if (columns == 2 && column1 != "") 
-      columnsTemplate = column1 + " auto" 
-    else 
-      columnsTemplate = "repeat(" + columns + ", 1fr )";
-
-    return columnsTemplate
+  $: $component.styles = {
+    ...$component.styles,
+    normal : {
+      ...$component.styles.normal,
+      "grid-column" : "span " + ( colSpan * 6 )
+    }
   }
 
-  setContext("field-group", { labelPos })
+  function genmerateColumns ( ) {
+    return "repeat(" + columns * 6 + ", 1fr )";
+  }
+
+  $: setContext("field-group", labelPos )
+  $: setContext("field-group-columns", columns )
+  $: setContext("field-group-label-width", labelWidth )
 </script>
+
 
 <div class="wrapper" use:styleable={$component.styles}>
   {#if collapsible}
@@ -87,8 +92,10 @@
             style:--label-font-size={labelSize}
             style:--label-font-weight={labelWeight}
 
-          >   
-            <slot />
+          >  
+            {#key labelPos}
+              <slot />
+            {/key}
           </div>
         </div>
     </div>
@@ -102,7 +109,7 @@
         style:--header-font-bold={headerFontBold ? "800" : "600"} 
         style:margin-bottom={"0.85rem"}
         >
-        {header.toUpperCase()}
+        {header?.toUpperCase()}
       </h6>
     {/if}
     <div
@@ -116,18 +123,23 @@
       style:--spectrum-tableform-border-spacing={"unset"}
       style:--label-font-size={labelSize}
       style:--label-font-weight={labelWeight}
+      style:--super-field-group-span={6}
     >   
-      <slot />
+      {#key labelPos}
+        <slot />
+      {/key}
     </div>
     {/if}
   </div>
-
-
 
 <style>
   .wrapper {
     width: 100%;
     position: relative;
+  }
+
+  :global(.wrapper > .spectrum-Form > .component > *) {
+    grid-column: span var(--super-field-group-span);
   }
 
  :global(.spectrum-Form-itemLabel) {

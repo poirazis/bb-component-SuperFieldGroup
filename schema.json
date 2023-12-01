@@ -6,6 +6,7 @@
     "friendlyName": "Super Field Group",
     "description": "A Field Group Component for Budibase",
     "hasChildren": true,
+    "showEmptyState" : false,
     "icon": "Text",
     "settings": [
       {
@@ -53,6 +54,14 @@
         "type" : "number",
         "key" : "columns",
         "label" : "Columns",
+        "min" : 1,
+        "max" : 10,
+        "defaultValue": 1
+      },
+      {
+        "type" : "number",
+        "key" : "colSpan",
+        "label" : "Span Columns",
         "min" : 1,
         "max" : 10,
         "defaultValue": 1
