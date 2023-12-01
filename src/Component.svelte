@@ -1,7 +1,7 @@
 <script>
   import { getContext, setContext } from "svelte"
 
-  const { styleable, Block, BlockComponent } = getContext("sdk")
+  const { styleable } = getContext("sdk")
   const component = getContext("component")
 
   export let hideHeader
