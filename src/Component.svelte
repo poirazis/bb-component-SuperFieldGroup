@@ -1,8 +1,10 @@
 <script>
   import { getContext, setContext } from "svelte"
 
-  const { styleable } = getContext("sdk")
+  const { styleable, builderStore, componentStore } = getContext("sdk")
   const component = getContext("component")
+  const superContainer = getContext("superContainer")
+  const superContainerParams = getContext("superContainerParams")
 
   export let hideHeader
   export let header
@@ -10,7 +12,7 @@
   export let headerFontBold
   export let headerFontColor = "var(--spectrum-global-color-gray-700)"
   export let labelPos = "above"
-  export let labelWidth = "5rem"
+  export let labelWidth = "10rem"
   export let labelSize = "14px"
   export let labelWeight
   export let rowSpacing = "M"
@@ -20,33 +22,54 @@
   export let padding = true
   export let columns = 1
   export let disabled
-  export let colSpan = 6
 
-  export let column1 = "50%"
+  // Super Options
+  export let inSuperContainer
+  export let colSpan = 1
+  export let rowSpan = 1
 
   const rowSpacingMap = {
-    "above" : { XS : 1, S: 4, M : 8, L : 16 },
-    "left" : { XS : 8, S: 16, M : 24, L : 32 },
-    "right" : { XS : 8, S: 16, M : 24, L : 32 }
+    "above" : { XS : 2, S: 4, M : 8, L : 16 },
+    "left" : { XS : 4, S: 8, M : 16, L : 24 }
   }
 
   const colSpacingMap = {
-    "above" : { XS : 4, S: 8, M : 16, L : 24 },
-    "left" : { XS : 4, S: 8, M : 16, L : 24 },
-    "right" : { XS : 8, S: 16, M : 24, L : 32 }
+    "above" : { XS : 2, S: 8, M : 16, L : 24 },
+    "left" : { XS : 2, S: 8, M : 16, L : 24 },
   }
 
-  $: gridColumnsDef = genmerateColumns( columns, column1 )
+  $: gridColumnsDef = genmerateColumns( columns )
   $: $component.styles = {
     ...$component.styles,
     normal : {
       ...$component.styles.normal,
-      "grid-column" : "span " + ( colSpan * 6 )
+      "grid-column" : $superContainer == "grid" ? "span " + colSpan : "span " + ( colSpan * 6 ),
+      "grid-row" : $superContainer == "grid" ? "span " + rowSpan : "span 1"
+    }
+  }
+
+  $: {
+    if (
+      $builderStore.inBuilder
+      && $componentStore.selectedComponentPath?.includes($component.id)
+      && $superContainer == "grid" && !inSuperContainer
+    ) {
+      builderStore.actions.updateProp("inSuperContainer", true)
+    } else if (
+      $builderStore.inBuilder
+      && $componentStore.selectedComponentPath?.includes($component.id)
+      && inSuperContainer && $superContainer != "grid"
+    ) {
+      builderStore.actions.updateProp("inSuperContainer", false)
     }
   }
 
   function genmerateColumns ( ) {
     return "repeat(" + columns * 6 + ", 1fr )";
+  }
+
+  const superMeUp = (node, sc ) => {
+    console.log( sc )  
   }
 
   $: setContext("field-group", labelPos )
@@ -55,7 +78,7 @@
 </script>
 
 
-<div class="wrapper" use:styleable={$component.styles}>
+<div class="wrapper" use:styleable={$component.styles} use:superMeUp={$superContainer} >
   {#if collapsible}
   <div class="spectrum-Accordion">
     <div class:is-disabled={disabled} class:is-open={!collapsed} class="spectrum-Accordion-item">
@@ -107,7 +130,7 @@
         style:--header-font-size={headerSize}
         style:--header-font-color={headerFontColor} 
         style:--header-font-bold={headerFontBold ? "800" : "600"} 
-        style:margin-bottom={"0.85rem"}
+        style:margin-bottom={"1.25rem"}
         >
         {header?.toUpperCase()}
       </h6>
@@ -147,6 +170,7 @@
     font-size: var(--label-font-size) !important;
     font-weight: var(--label-font-weight) !important;
     padding-right: 0.85rem;
+    line-height: 24px !important;
   }
 
   .spectrum-Form {
@@ -155,9 +179,13 @@
     grid-template-columns: var(--grid-columns);
     column-gap: var(--grid-column-gap);
     row-gap: var(--grid-row-gap);
+    align-items: stretch;
+    justify-items: stretch;
   }
   .spectrum-Form--labelsAbove {
     display: grid !important; 
+    align-items: stretch;
+    justify-items: stretch;
   }
   .spectrum-Heading {
     font-size: var(--header-font-size) !important;

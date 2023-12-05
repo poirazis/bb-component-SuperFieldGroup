@@ -6,25 +6,31 @@
     "friendlyName": "Super Field Group",
     "description": "A Field Group Component for Budibase",
     "hasChildren": true,
-    "showEmptyState" : false,
-    "icon": "Text",
+    "showEmptyState" : true,
+    "icon": "Group",
     "settings": [
+      {
+        "type" : "boolean",
+        "key" : "inSuperContainer",
+        "defaultValue" : true,
+        "hidden" : true
+      },
       {
         "type" : "select",
         "key" : "labelPos",
         "label" : "Label Position",
         "options" : [
           { "label" : "Left", "value" : "left" },
-          { "label" : "Above", "value" : "above" },
-          { "label" : "Right", "value" : "right" }
+          { "label" : "Above", "value" : "above" }
         ],
-        "defaultValue" : "left"
+        "defaultValue" : "above"
       },
       {
         "type" : "text",
         "key" : "labelWidth",
-        "label" : "Label Col Width",
-        "defaultValue" : "25%"
+        "label" : "Label Width",
+        "dependsOn" : { "setting" : "labelPos" , "value" : "left"},
+        "defaultValue" : "8rem"
       },
       {
         "type" : "select",
@@ -57,21 +63,6 @@
         "min" : 1,
         "max" : 10,
         "defaultValue": 1
-      },
-      {
-        "type" : "number",
-        "key" : "colSpan",
-        "label" : "Span Columns",
-        "min" : 1,
-        "max" : 10,
-        "defaultValue": 1
-      },
-      {
-        "type" : "text",
-        "key" : "column1",
-        "label" : "Column 1 Width",
-        "defaultValue": "50%",
-        "dependsOn" : { "setting" : "columns" , "value" : 2 }
       },
       {
         "type" : "boolean",
@@ -122,13 +113,11 @@
             "key" : "labelSize",
             "label" : "Size",
             "options" : [
-              { "label" : "Small", "value" : "12px" },
+              { "label" : "Small", "value" : "13px" },
               { "label" : "Medium", "value" : "14px" },
-              { "label" : "Large", "value" : "15px" },
-              { "label" : "X Large", "value" : "16px" },
-              { "label" : "XX Large", "value" : "17px" }
+              { "label" : "Large", "value" : "15px" }
             ],
-            "defaultValue" : "12px"
+            "defaultValue" : "14px"
           },
           {
             "type" : "select",
@@ -178,6 +167,27 @@
             "key" : "headerFontBold",
             "label" : "Bold",
             "defaultValue" : false
+          }
+        ]
+      },
+      {
+        "section" : true,
+        "name" : "🛠️ Super Options",
+        "dependsOn" : "inSuperContainer",
+        "settings" : [     
+          {
+            "type" : "number",
+            "key" : "colSpan",
+            "label" : "Span Columns",
+            "min" : 1,
+            "defaultValue": 1
+          },
+          {
+            "type" : "number",
+            "key" : "rowSpan",
+            "label" : "Span Rows",
+            "min" : 1,
+            "defaultValue": 1
           }
         ]
       }
