@@ -179,12 +179,12 @@
     grid-template-columns: var(--grid-columns);
     column-gap: var(--grid-column-gap);
     row-gap: var(--grid-row-gap);
-    align-items: stretch;
+    align-items: flex-start;
     justify-items: stretch;
   }
   .spectrum-Form--labelsAbove {
     display: grid !important; 
-    align-items: stretch;
+    align-items: flex-start;
     justify-items: stretch;
   }
   .spectrum-Heading {
