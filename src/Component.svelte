@@ -4,7 +4,6 @@
   const { styleable } = getContext("sdk")
   const component = getContext("component")
 
-
   export let hideHeader
   export let header
   export let headerIcon
@@ -34,7 +33,7 @@
     ...$component.styles,
     normal : {
       ...$component.styles.normal,
-      "--super-field-group-span": "6"
+      "--super-field-group-span": "6",
     }
   }
 
@@ -42,10 +41,10 @@
     return "repeat(" + columns * 6 + ", 1fr )";
   }
 
-$: setContext("field-group", labelPos )
-$: setContext("field-group-columns", columns )
-$: setContext("field-group-label-width", labelWidth )
-
+  $: setContext("field-group", labelPos )
+  $: setContext("field-group-columns", columns )
+  $: setContext("field-group-label-width", labelWidth )
+  $: setContext("field-group-disabled", disabled )
 </script>
 
 
@@ -113,7 +112,7 @@ $: setContext("field-group-label-width", labelWidth )
     justify-items: stretch;
   }
 
-  :global(.spectrum-Form-item) {
+  :global(.spectrum-Form > .component > * ) {
     grid-column: span var(--super-field-group-span);
   }
 
