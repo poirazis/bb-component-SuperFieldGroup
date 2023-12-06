@@ -5,16 +5,11 @@
     "name": "bb-component-SuperFieldGroup",
     "friendlyName": "Super Field Group",
     "description": "A Field Group Component for Budibase",
+    "styles": [ "padding", "border", "background" ],
     "hasChildren": true,
     "showEmptyState" : true,
     "icon": "Group",
     "settings": [
-      {
-        "type" : "boolean",
-        "key" : "inSuperContainer",
-        "defaultValue" : true,
-        "hidden" : true
-      },
       {
         "type" : "select",
         "key" : "labelPos",
@@ -66,19 +61,6 @@
       },
       {
         "type" : "boolean",
-        "key" : "collapsible",
-        "label" : "Collapsible",
-        "defaultValue": false
-      },
-      {
-        "type" : "boolean",
-        "key" : "collapsed",
-        "label" : "Collapsed",
-        "dependsOn" : "collapsible",
-        "defaultValue": false
-      },
-      {
-        "type" : "boolean",
         "key" : "disabled",
         "label" : "Disabled",
         "defaultValue": false
@@ -87,15 +69,7 @@
         "type" : "boolean",
         "key" : "hideHeader",
         "label" : "Hide Header",
-        "defaultValue": false,
-        "dependsOn" : { "setting": "collapsible", "value" : false }
-      },
-      {
-        "type" : "boolean",
-        "key" : "padding",
-        "label" : "Padding",
-        "defaultValue": true,
-        "dependsOn" : { "setting": "collapsible", "value" : true }
+        "defaultValue": false
       },
       {
         "type" : "boolean",
@@ -145,49 +119,15 @@
             "defaultValue" : "New Super Field Group"
           },
           {
-            "type" : "select",
-            "key" : "headerSize",
-            "label" : "Size",
-            "options" : [
-              { "label" : "Small", "value" : "12px" },
-              { "label" : "Medium", "value" : "14px" },
-              { "label" : "Large", "value" : "16px" },
-              { "label" : "Extra Large", "value" : "17px" }
-            ],
-            "defaultValue" : "14px"
+            "type": "icon",
+            "key": "headerIcon",
+            "label": "Icon"
           },
           {
             "type" : "color",
             "key" : "headerFontColor",
             "label" : "Color",
             "defaultValue" : "var(--spectrum-global-color-gray-700)"
-          },
-          {
-            "type" : "boolean",
-            "key" : "headerFontBold",
-            "label" : "Bold",
-            "defaultValue" : false
-          }
-        ]
-      },
-      {
-        "section" : true,
-        "name" : "🛠️ Super Options",
-        "dependsOn" : "inSuperContainer",
-        "settings" : [     
-          {
-            "type" : "number",
-            "key" : "colSpan",
-            "label" : "Span Columns",
-            "min" : 1,
-            "defaultValue": 1
-          },
-          {
-            "type" : "number",
-            "key" : "rowSpan",
-            "label" : "Span Rows",
-            "min" : 1,
-            "defaultValue": 1
           }
         ]
       }
