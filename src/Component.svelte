@@ -49,18 +49,16 @@
 
 
 <div class="wrapper" use:styleable={$component.styles} >
-
   {#if !hideHeader}
     <div class="field-group-header" style:height={labelPos=="above" ? "2rem" : "2.5rem"}>
       {#if headerIcon}
         <i class={headerIcon} color={headerFontColor} style:font-size={"16px"}/>
       {/if}
-      <h3  style:margin={"unset"} style:color={headerFontColor || "var(--spectrum-global-color-gray-700)"} >
+      <h4 style:margin={"unset"} style:color={headerFontColor || "var(--spectrum-global-color-gray-700)"} >
         {header?.toUpperCase()}
-      </h3>
+      </h4>
     </div>
   {/if}
-
 
   <div
     class="spectrum-Form"
@@ -108,7 +106,7 @@
   }
   .spectrum-Form--labelsAbove {
     display: grid !important; 
-    align-items: flex-start;
+    align-items: stretch;
     justify-items: stretch;
   }
 
