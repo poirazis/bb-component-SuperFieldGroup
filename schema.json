@@ -87,9 +87,9 @@
             "key" : "labelSize",
             "label" : "Size",
             "options" : [
-              { "label" : "Small", "value" : "13px" },
-              { "label" : "Medium", "value" : "14px" },
-              { "label" : "Large", "value" : "15px" }
+              { "label" : "Small", "value" : "11px" },
+              { "label" : "Medium", "value" : "12px" },
+              { "label" : "Large", "value" : "13px" }
             ],
             "defaultValue" : "14px"
           },
