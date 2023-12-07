@@ -11,7 +11,7 @@
 
   export let labelPos = "above"
   export let labelWidth = "6rem"
-  export let labelSize = "14px"
+  export let labelSize = "13px"
   export let labelWeight
   export let rowSpacing = "M"
   export let columnSpacing = "M"
@@ -121,5 +121,9 @@
     padding-right: 0.85rem;
     line-height: 20px !important;
     flex-direction: var(--label-placement) !important;
+  }
+ :global(.super-field-group > .spectrum-Form > .component > .spectrum-Form-item > .spectrum-Form-itemLabel ) {
+    font-size: var(--label-font-size) !important;
+    font-weight: var(--label-font-weight) !important;
   }
 </style>
