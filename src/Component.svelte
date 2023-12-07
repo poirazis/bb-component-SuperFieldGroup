@@ -48,7 +48,7 @@
 </script>
 
 
-<div class="wrapper" use:styleable={$component.styles} >
+<div class="super-field-group" use:styleable={$component.styles} >
   {#if !hideHeader}
     <div class="field-group-header" style:height={labelPos=="above" ? "2rem" : "2.5rem"}>
       {#if headerIcon}
@@ -82,7 +82,7 @@
 </div>
 
 <style>
-  .wrapper {
+  .super-field-group {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -114,16 +114,12 @@
     grid-column: span var(--super-field-group-span);
   }
 
- :global(.spectrum-Form-itemLabel) {
+ :global(.super-field-group > .spectrum-Form > .component > .spectrum-Form-item.above ) {
     min-width: var(--label-column-width) !important;
     font-size: var(--label-font-size) !important;
     font-weight: var(--label-font-weight) !important;
     padding-right: 0.85rem;
     line-height: 20px !important;
-    flex-direction: var(--label-placement);
-  }
- :global(.spectrum-Form-item.above) {
-    gap: var(--label-gap) !important;
     flex-direction: var(--label-placement) !important;
   }
 </style>
