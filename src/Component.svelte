@@ -115,14 +115,12 @@
   }
 
  :global(.super-field-group > .spectrum-Form > .component > .spectrum-Form-item.above ) {
-    min-width: var(--label-column-width) !important;
-    font-size: var(--label-font-size) !important;
-    font-weight: var(--label-font-weight) !important;
-    padding-right: 0.85rem;
     line-height: 20px !important;
     flex-direction: var(--label-placement) !important;
+    gap: 0.85rem;
   }
  :global(.super-field-group > .spectrum-Form > .component > .spectrum-Form-item > .spectrum-Form-itemLabel ) {
+    min-width: var(--label-column-width) !important;
     font-size: var(--label-font-size) !important;
     font-weight: var(--label-font-weight) !important;
   }
