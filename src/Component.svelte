@@ -102,11 +102,10 @@
     column-gap: var(--grid-column-gap);
     row-gap: var(--grid-row-gap);
     align-items: flex-start;
-    justify-items: stretch;
+    justify-items: flex-start;
   }
   .spectrum-Form--labelsAbove {
     display: grid !important; 
-    align-items: stretch;
     justify-items: stretch;
   }
 
