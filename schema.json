@@ -1,122 +1,185 @@
 {
   "type": "component",
-  "metadata": {},
+  "metadata": {
+    "svelteMajor": 5
+  },
   "schema": {
     "name": "bb-component-SuperFieldGroup",
     "friendlyName": "Super Field Group",
     "description": "A Field Group Component for Budibase",
-    "styles": [ "padding", "border", "background" ],
+    "styles": [
+      "padding",
+      "border",
+      "background"
+    ],
     "hasChildren": true,
-    "showEmptyState" : true,
+    "showEmptyState": true,
     "icon": "Group",
     "settings": [
       {
-        "type" : "select",
-        "key" : "labelPos",
-        "label" : "Label Position",
-        "options" : [
-          { "label" : "Left", "value" : "left" },
-          { "label" : "Above", "value" : "above" }
+        "type": "select",
+        "key": "labelPos",
+        "label": "Label Position",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Above",
+            "value": "above"
+          }
         ],
-        "defaultValue" : "above"
+        "defaultValue": "above"
       },
       {
-        "type" : "text",
-        "key" : "labelWidth",
-        "label" : "Label Width",
-        "dependsOn" : { "setting" : "labelPos" , "value" : "left"},
-        "defaultValue" : "8rem"
+        "type": "text",
+        "key": "labelWidth",
+        "label": "Label Width",
+        "dependsOn": {
+          "setting": "labelPos",
+          "value": "left"
+        },
+        "defaultValue": "8rem"
       },
       {
-        "type" : "select",
-        "key" : "rowSpacing",
-        "label" : "Row Spacing",
-        "options" : [
-          { "label" : "Extra Small", "value" : "XS" },
-          { "label" : "Small", "value" : "S" },
-          { "label" : "Medium", "value" : "M" },
-          { "label" : "Large", "value" : "L" }
+        "type": "select",
+        "key": "rowSpacing",
+        "label": "Row Spacing",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "XS"
+          },
+          {
+            "label": "Small",
+            "value": "S"
+          },
+          {
+            "label": "Medium",
+            "value": "M"
+          },
+          {
+            "label": "Large",
+            "value": "L"
+          }
         ],
-        "defaultValue" : "M"
+        "defaultValue": "M"
       },
       {
-        "type" : "select",
-        "key" : "columnSpacing",
-        "label" : "Column Spacing",
-        "options" : [
-          { "label" : "Extra Small", "value" : "XS" },
-          { "label" : "Small", "value" : "S" },
-          { "label" : "Medium", "value" : "M" },
-          { "label" : "Large", "value" : "L" }
+        "type": "select",
+        "key": "columnSpacing",
+        "label": "Column Spacing",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "XS"
+          },
+          {
+            "label": "Small",
+            "value": "S"
+          },
+          {
+            "label": "Medium",
+            "value": "M"
+          },
+          {
+            "label": "Large",
+            "value": "L"
+          }
         ],
-        "defaultValue" : "M"
+        "defaultValue": "M"
       },
       {
-        "type" : "number",
-        "key" : "columns",
-        "label" : "Columns",
-        "min" : 1,
-        "max" : 10,
+        "type": "number",
+        "key": "columns",
+        "label": "Columns",
+        "min": 1,
+        "max": 10,
         "defaultValue": 1
       },
       {
-        "type" : "boolean",
-        "key" : "disabled",
-        "label" : "Disabled",
+        "type": "boolean",
+        "key": "disabled",
+        "label": "Disabled",
         "defaultValue": false
       },
       {
-        "type" : "boolean",
-        "key" : "hideHeader",
-        "label" : "Hide Header",
+        "type": "boolean",
+        "key": "hideHeader",
+        "label": "Hide Header",
         "defaultValue": false
       },
       {
-        "type" : "boolean",
-        "key" : "customLabels",
-        "label" : "Customize Labels",
+        "type": "boolean",
+        "key": "customLabels",
+        "label": "Customize Labels",
         "defaultValue": false
       },
       {
-        "section" : true,
-        "name" : "Customize Labels",
-        "dependsOn" : "customLabels",
-        "settings" : [
+        "section": true,
+        "name": "Customize Labels",
+        "dependsOn": "customLabels",
+        "settings": [
           {
-            "type" : "select",
-            "key" : "labelSize",
-            "label" : "Size",
-            "options" : [
-              { "label" : "Small", "value" : "11px" },
-              { "label" : "Medium", "value" : "12px" },
-              { "label" : "Large", "value" : "13px" }
+            "type": "select",
+            "key": "labelSize",
+            "label": "Size",
+            "options": [
+              {
+                "label": "Small",
+                "value": "11px"
+              },
+              {
+                "label": "Medium",
+                "value": "12px"
+              },
+              {
+                "label": "Large",
+                "value": "13px"
+              }
             ],
-            "defaultValue" : "14px"
+            "defaultValue": "14px"
           },
           {
-            "type" : "select",
-            "key" : "labelWeight",
-            "label" : "Weight",
-            "options" : [
-              { "label" : "Light", "value" : "400" },
-              { "label" : "Normal", "value" : "500" },
-              { "label" : "Bold", "value" : "600" },
-              { "label" : "Bolder", "value" : "700" }
+            "type": "select",
+            "key": "labelWeight",
+            "label": "Weight",
+            "options": [
+              {
+                "label": "Light",
+                "value": "400"
+              },
+              {
+                "label": "Normal",
+                "value": "500"
+              },
+              {
+                "label": "Bold",
+                "value": "600"
+              },
+              {
+                "label": "Bolder",
+                "value": "700"
+              }
             ],
-            "defaultValue" : "500"
+            "defaultValue": "500"
           }
         ]
       },
       {
-        "section" : true,
-        "name" : "Header Settings",
-        "dependsOn" : { "setting" : "hideHeader", "value" : false },
-        "settings" : [
+        "section": true,
+        "name": "Header Settings",
+        "dependsOn": {
+          "setting": "hideHeader",
+          "value": false
+        },
+        "settings": [
           {
             "type": "text",
             "key": "header",
             "label": "Header",
-            "defaultValue" : "New Super Field Group"
+            "defaultValue": "New Super Field Group"
           },
           {
             "type": "icon",
@@ -124,10 +187,10 @@
             "label": "Icon"
           },
           {
-            "type" : "color",
-            "key" : "headerFontColor",
-            "label" : "Color",
-            "defaultValue" : "var(--spectrum-global-color-gray-700)"
+            "type": "color",
+            "key": "headerFontColor",
+            "label": "Color",
+            "defaultValue": "var(--spectrum-global-color-gray-700)"
           }
         ]
       }
